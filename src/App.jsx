@@ -48,6 +48,21 @@ function App() {
 
   }
 
+  function Usun(cena, id) {
+    let k=sztuki.slice();
+    if (pisanki[id-1].sztuk!=0) {
+      k[id-1]--;
+      setSztuki(k);
+      pisanki[id-1].sztuk--;
+
+
+      setKwota(kwota-cena);
+
+      {wyswietlKoszyk()}
+    }
+
+  }
+
   function wyswietlKoszyk() {
     if (kwota<=0) return (<h4>Brak produktów w koszyku</h4>)
     else {
@@ -86,7 +101,7 @@ function App() {
         <h1>Pisanki od jajecznego barona</h1>
         <img src={baron} alt="Jajeczny Baron (Obrazek)"/>
       </header>
-      {pisanki.map( (e) => (<Pisanka key={e.id} nazwa={e.nazwa} obrazek={e.obrazek} cena={e.cena} klik = {() => Dodaj(e.cena, e.id)}  />) )}
+      {pisanki.map( (e) => (<Pisanka key={e.id} nazwa={e.nazwa} obrazek={e.obrazek} cena={e.cena} klik1 = {() => Dodaj(e.cena, e.id)}  klik2 = {() => Usun(e.cena, e.id)} />) )}
       <div className='Koszyk'>
         <h2>Produkty:</h2>
         {wyswietlKoszyk()}
