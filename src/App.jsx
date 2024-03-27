@@ -83,7 +83,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Pisanki</h1>
+        <h1>Pisanki od jajecznego barona</h1>
         <img src={baron} alt="Jajeczny Baron (Obrazek)"/>
       </header>
       {pisanki.map( (e) => (<Pisanka key={e.id} nazwa={e.nazwa} obrazek={e.obrazek} cena={e.cena} klik = {() => Dodaj(e.cena, e.id)}  />) )}

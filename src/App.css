@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.App-header {
+  font-family: 'Facebook Letter Faces', sans-serif;
+  color: white;
+  border-bottom: 1px solid black;
+  font-size: 150%;
+  margin-top: -10px;
+  padding-bottom: -40px;
+  letter-spacing: 2px;
+
+  text-shadow: -1px 1px 0 #000,
+  1px 1px 0 #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000;
+}
+
 h2, h4 {
   text-align: start;
 }
