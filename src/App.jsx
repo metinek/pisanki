@@ -9,9 +9,13 @@ import rozowa from './img/pisanka3.png';
 import turkusowa from './img/pisanka4.png';
 import zielona from './img/pisanka5.png';
 import zolta from './img/pisanka6.png';
+//jajeczny baron
+import baron from './img/jajecznybaron.png';
+
 
 //komponenty
 import Pisanka from './Pisanka.jsx';
+import Koszyk from './Koszyk.jsx';
 
 //tabela pisanek
 const pisanki=[
@@ -29,20 +33,49 @@ const pisanki=[
 function App() {
 
   let [kwota, setKwota] = useState(0);
+  let [sztuki, setSztuki] = useState(Array(6).fill(0));
 
 
-  function Dodaj(cena) {
+  function Dodaj(cena, id) {
+    let k=sztuki.slice();
+    k[id-1]++;
+    setSztuki(k);
+    pisanki[id-1].sztuk++;
+
+
     setKwota(kwota+cena);
-    {wyswietlKoszyk}
+    {wyswietlKoszyk()}
+
   }
 
   function wyswietlKoszyk() {
-    if (kwota<=0) return (<p>Brak produktów w koszyku</p>)
+    if (kwota<=0) return (<h4>Brak produktów w koszyku</h4>)
     else {
     return (
-    <h2>Cena: <span className='Cena'>{kwota} zł</span></h2>
+      <>
+
+
+
+        {
+          pisanki.map(
+            (k)=>(
+              <Koszyk key={"k"+k.id.toString()} 
+              sztuki={k.sztuk}
+              nazwa={k.nazwa}
+              cena={k.cena}
+              />
+              
+              )
+            )
+        }
+
+
+
+
+
+      <h2>Cena: <span className='Cena'>{kwota} zł</span></h2>
     
-    
+      </>
     )
     }
   }
@@ -51,11 +84,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Pisanki</h1>
+        <img src={baron} alt="Jajeczny Baron (Obrazek)"/>
       </header>
-      {pisanki.map( (e) => (<Pisanka key={e.id} nazwa={e.nazwa} obrazek={e.obrazek} cena={e.cena} klik = {() => Dodaj(e.cena)}  />) )}
+      {pisanki.map( (e) => (<Pisanka key={e.id} nazwa={e.nazwa} obrazek={e.obrazek} cena={e.cena} klik = {() => Dodaj(e.cena, e.id)}  />) )}
       <div className='Koszyk'>
         <h2>Produkty:</h2>
-        {wyswietlKoszyk}
+        {wyswietlKoszyk()}
       </div>
 
 
